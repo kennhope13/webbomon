@@ -217,6 +217,7 @@ module.exports = function(app, objJson,isEmailValid){
     app.get("/insertArticle", (req, res) => {
         res.render("./admin/index", {page: "addArticle"});
     });
+
     app.post("/addArticle", (req, res) => {
         upload(req, res, function (err) {
             console.log(req.body);
@@ -233,6 +234,22 @@ module.exports = function(app, objJson,isEmailValid){
                 console.log("save failed"+e);
             })
         });
+    });
+
+    app.get("article", (req, res) => {
+        res.render("./admin/index", {page: "article"});
+    });
+    app.post("/listarticle",(req,res)=>{
+        article.find().then((data)=>{
+            res.json({
+                result:1,
+                userdata:data
+            })
+        }).catch((e)=>{
+            res.json({
+                result:0
+            })
+        })
     });
 
      // upload files

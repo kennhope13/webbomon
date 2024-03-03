@@ -109,6 +109,26 @@ $.post("./listauthor", function (data) {
       })
   }
 });
+
+// show list athors
+$.post("./listarticle", function (data) {
+  console.log(data);
+  if(data.result==1){
+      data.userdata.forEach(function(dt,k){
+          k=k+1;
+          $("#listarticle").append(`
+            <tr>
+                <td class="text-center">`+k+`</td>
+                <td class="txt-oflo">`+dt.article_name+`</td>
+                <td><span class="badge bg-success rounded-pill">sale</span> </td>
+                <td class="txt-oflo"><span><img class="avatar" src="./upload/default2.png" alt=""></span></td>
+                <td><span class="text-success">Phan Dinh Tung</span></td>
+                <td><a href="javascript:void(0)" class="text-inverse p-r-10" data-bs-toggle="tooltip" title="" data-original-title="Edit"><i class="ti-marker-alt"></i></a> <a class="text-inverse" title="" data-bs-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a></td> 
+            </tr>
+          `)
+      })
+  }
+});
 // upload file
 $("#btnUploadImage").click(function(){
   var data = new FormData();
