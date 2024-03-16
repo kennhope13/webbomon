@@ -19,7 +19,10 @@ const authorSchema = new Schema({
     slug:{
         type:String,
         required:true,
-    }
+    },
+    article_author: { 
+        type: String,
+    },
 },{
     timestamps:true,
     collection:COLLECTION_NAME

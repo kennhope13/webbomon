@@ -27,11 +27,11 @@
             <!-- <img style="width: 50px; height: 80px;" src="./assets/images/<%= Avatar %> " alt=""> -->
             <ul style="margin-left: 200px;">
               <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic show" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img style="height: 50px; width: 50px;" src="assets/images/avatar.png" alt="user" class=""> <span class="hidden-md-down">Mark &nbsp;<i class="fa fa-angle-down"></i></span> </a>
+                <a class="nav-link dropdown-toggle waves-effect waves-dark profile-pic show" href="" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="true"><img style="height: 50px; width: 50px;" src="/<%= Avatar %>" alt="user" class=""> <span class="hidden-md-down">Mark &nbsp;<i class="fa fa-angle-down"></i></span> </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a href="javascript:void(0)" class="dropdown-item"><i class="ti-user"></i> Thông tin cá nhân</a>
                   <div class="dropdown-divider"></div>
-                  <a href="#" class="dropdown-item mr-3" id="login-lay"><i class="fa fa-power-off"></i> Logout</a>
+                  <a href="#" class="dropdown-item mr-3" id="login-lay"><i class="fa fa-power-off"></i> Đăng xuất</a>
                 </div>
               </li>
             </ul>
@@ -241,33 +241,34 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <hr>
           <h4 style="color: darkgreen;">Hội thảo</h4>
           <p style=" opacity: 0.7;">20/11/2023</p>
           <img src="./images/Khoa CNTT 20-11-273.jfif" style="width: 100%;  height: 170px" />
-          <h5>Hội thảo khoa học công nghệ và đổi mới sáng tạo lĩnh vực thủy lợi và phòng chống thiên tai </h5>
+          <h5 class="description">Hội thảo khoa học công nghệ và đổi mới sáng tạo lĩnh vực thủy lợi và phòng chống thiên tai </h5>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
           <hr>
           <h4 style="color: darkgreen;">Sự kiện</h4>
           <p style=" opacity: 0.7;">20/11/2023</p>
           <img src="./images/z4866341734575_f118ae834f4201667aa0de4449169b37.jpg" style="width: 100%; height: 170px; object-fit: cover;" />
-          <h5>Chào mừng ngày nhà giáo Việt Nam 20/11/2023 </h5>
+          <h5 class="description" >Chào mừng ngày nhà giáo Việt Nam 20/11/2023 </h5>
+          <a style="cursor: pointer;" href="#">xem thêm...</a>
         </div>
-        <div class="col-lg-3">
+        <!-- <div class="col-lg-3">
           <hr>
           <h4 style="color: darkgreen;">Sự kiện</h4>
           <p style=" opacity: 0.7;">20/11/2023</p>
           <img src="./images/DSC07287.jfif" style="width: 100%; height: 170px; object-fit: cover;"/>
           <h5>Lễ ký kết thỏa thuận hợp tác giữa Trường Đại học Xây dựng Hà Nội và Trường Đại học Thủy lợi </h5>
-        </div>
-        <div class="col-lg-3">
+        </div> -->
+        <div class="col-lg-4">
           <hr>
           <h4 style="color: darkgreen;">Thông báo</h4>
           <p style=" opacity: 0.7;">20/11/2023</p>
           <img src="./images/facebook-1536x590.png" style="width: 100%; height: 170px; object-fit: cover;"/>
-          <h5>Thông báo về việc đăng ký học trước một số học phần thuộc chương trình Thạc sĩ năm 2023 </h5>
+          <h5 class="description">Thông báo về việc đăng ký học trước một số học phần thuộc chương trình Thạc sĩ năm 2023 </h5>
         </div>
     </div>
     <hr style="width: 50%; margin-left: 25%;">

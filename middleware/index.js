@@ -7,8 +7,9 @@ const authorization = async (req, res, next) => {
    }
    try {
      const data = await jwt.verify(token, "jkasdhfu!#@$&$^@#!$!@#$1234");
-     req.userId = data._id;
+     req.userId = data.UserId;
      req.avt = data.avatar;
+     req.name = data.name;
      return next();
    } catch {
      console.log("token error1");
