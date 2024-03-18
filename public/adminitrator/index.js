@@ -127,25 +127,26 @@ $(document).ready(function () {
         k = k + 1;
         $("#listuser").append(`
               <tr>
+              <td>
+                  <div> <a
+                  class="nav-link  waves-effect waves-dark edit_user"  id="`+ dt._id + `" data-bs-toggle="dropdown"><i  class="ti-marker-alt "></i> </a>
+                  <a class="delete_user text-inverse"  id="` + dt._id + `" title="" data-bs-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a>
+              <div class=" animated bounceInDown" >
+              <div class=" row" >
+                <div id = "listedit" class="listedit">
+                </div>
+
+          </div>
+              </div>
+          </div>
+          </td> 
                   <td class="text-center">`+ k + `</td>
                   <td class="txt-oflo">`+ dt.Name + `</td>
                   <td><span class="badge bg-success rounded-pill">`+ dt.Active + `</span> </td>
                   <td><span class="text-success">`+ dt.Email + `</span></td>
                   <td class="txt-oflo"><span><img style="width: 80px"  class="avatar" src="./`+ dt.Avatar + `" alt=""></span></td>
                   <td><span class="text-success">`+ dt.mobile + `</span></td>
-                  <td>
-                  <div class=" dropdown mega-dropdown"> <a
-                  class="nav-link  waves-effect waves-dark edit_user"  id="`+ dt._id + `" data-bs-toggle="dropdown"><i  class="ti-marker-alt "></i> </a>
-                  <a class="delete_user text-inverse"  id="` + dt._id + `" title="" data-bs-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a>
-              <div class="dropdown animated bounceInDown" >
-              <div class="mega-dropdown row" >
-                <div id = "listedit">
-                </div>
-
-          </div>
-              </div>
-          </div>
-          </td>
+                  
               </tr>
           `)
       })
@@ -167,19 +168,20 @@ $(document).ready(function () {
         });
       }
     });
-    $('.edit_user').on('click', function () {
+
+    $('.edit_user').on('click', function (id) {
       var id = $(this).attr('id');
-      var confirmEdit = true;
-      if (confirmEdit) {
+      if (id) {
         $.ajax({
           type: 'GET',
           method: 'GET',
           url: '/edit/' + id,
           success: function (response) {
+
             $('#listedit').html('');
             $('#listedit').append(`
-            
-                      <div class="col-lg-12 m-b-30 text-center">
+                    <div>
+                      <div class="col-lg-12 m-b-30 text-center ">
                           <h4 class="m-b-20" >CHỈNH SỬA NGƯỜI DÙNG</h4>
                           <!-- Accordian -->
                           <div class="accordion" id="accordionExample">
@@ -215,7 +217,7 @@ $(document).ready(function () {
                               <button  type="button" class="btn btn-info  text-white btn_edit"  >UPDATE</button>
                           </div>
                       </div>
-                      
+                      </div>
             `)
             $("#btn_EditUploadImage").click(function () {
               var data = new FormData();
@@ -258,7 +260,7 @@ $(document).ready(function () {
               }
               var data = { Name: Name, Active: ck, Email: Email, Avatar: img, mobile: phoneNumber };
               console.log("poooooooo:", data);
-              jQuery.ajax({
+              $.ajax({
                 url: './edit_user/' + id,
                 data: data,
                 cache: false,
@@ -266,7 +268,7 @@ $(document).ready(function () {
                 type: 'POST',
                 success: function (data) {
                   if (data.result == 1) {
-                    alert("Chinh sua người dùng thành công.");
+
                     window.location = "./users";
                   } else {
                     //alert(data.message);

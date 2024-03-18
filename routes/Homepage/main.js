@@ -225,7 +225,7 @@ module.exports = function (app, objJson, isEmailValid) {
         console.log("bb", req.params.id);
         User.findByIdAndUpdate(req.params.id, req.body).then((dt) => {
             res.json({
-                result: 1, data: dt
+                result: 1, data: dt 
             })
         }).catch((e) => {
             res.json({
@@ -295,7 +295,7 @@ module.exports = function (app, objJson, isEmailValid) {
     app.get("/TacGia", (req, res) => {
         res.render("./TacGia/TacGia", { page: "BaiViet" })
     })
-    app.get("/deleleBaiViet/:id",(req, res)=>{
+    app.get("/deleleBaiViet/:id", (req, res) => {
         article.findByIdAndDelete(req.params.id).then((dt) => {
             res.json({
                 result: 1, data: dt
