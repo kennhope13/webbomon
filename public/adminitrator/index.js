@@ -128,24 +128,23 @@ $(document).ready(function () {
         $("#listuser").append(`
               <tr>
               <td>
-                  <div> <a
-                  class="nav-link  waves-effect waves-dark edit_user"  id="`+ dt._id + `" data-bs-toggle="dropdown"><i  class="ti-marker-alt "></i> </a>
-                  <a class="delete_user text-inverse"  id="` + dt._id + `" title="" data-bs-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a>
-              <div class=" animated bounceInDown" >
-              <div class=" row" >
-                <div id = "listedit" class="listedit">
-                </div>
-
-          </div>
-              </div>
-          </div>
-          </td> 
+                  <a class="nav-link  waves-effect waves-dark edit_user"  id="`+ dt._id + `" data-bs-toggle="dropdown"><i  class="ti-marker-alt "></i> </a>
+                  <a class="delete_user text-inverse" id="`+ dt._id + `" title="" data-bs-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a> 
+                  <div class=" animated bounceInDown" >
+                  <div class=" row" >
+                  <div id = "listedit" class="listedit">
+                  </div>
+                  </div>
+                  </div>
+                  
+                  </td> 
                   <td class="text-center">`+ k + `</td>
                   <td class="txt-oflo">`+ dt.Name + `</td>
                   <td><span class="badge bg-success rounded-pill">`+ dt.Active + `</span> </td>
                   <td><span class="text-success">`+ dt.Email + `</span></td>
                   <td class="txt-oflo"><span><img style="width: 80px"  class="avatar" src="./`+ dt.Avatar + `" alt=""></span></td>
                   <td><span class="text-success">`+ dt.mobile + `</span></td>
+                  
                   
               </tr>
           `)
@@ -180,12 +179,16 @@ $(document).ready(function () {
 
             $('#listedit').html('');
             $('#listedit').append(`
-                    <div>
+                    <div class = "edit">
                       <div class="col-lg-12 m-b-30 text-center ">
-                          <h4 class="m-b-20" >CHỈNH SỬA NGƯỜI DÙNG</h4>
+                          
                           <!-- Accordian -->
                           <div class="accordion" id="accordionExample">
                               <div class="card m-b-0">
+                              
+                              <button  type="button" style="position:absolute; left:50px; margin-top:10px" id="hiden" >X</button>
+                              
+                              <h4 class="m-b-20 mt-5" >CHỈNH SỬA NGƯỜI DÙNG</h4>
                                   <div class="form-group">
                                       <input style="width: 50%" type="text" value= "`+ response.data.Name + `" class="form-control" id="txt_editname"
                                           placeholder="Enter Name">
@@ -212,13 +215,21 @@ $(document).ready(function () {
                                       <input style="width: 50%;" type="text" class="form-control"
                                           placeholder="Enter phone number" id="txt_EditphoneNum" value="`+ response.data.mobile + `">
                                   </div>
-  
+                                 <div>
+                                 <button  type="button" class="btn btn-info  text-white btn_edit mb-3"  >UPDATE</button>
+                                 </div>
                               </div>
-                              <button  type="button" class="btn btn-info  text-white btn_edit"  >UPDATE</button>
+                             
                           </div>
                       </div>
                       </div>
             `)
+            $("#hiden").click(function () {
+              $("#listedit").hide();
+            })
+            $(".edit_user").click(function () {
+              $("#listedit").show();
+            })
             $("#btn_EditUploadImage").click(function () {
               var data = new FormData();
               jQuery.each(jQuery('#txt_FileImage')[0].files, function (i, file) {
