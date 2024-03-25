@@ -40,7 +40,8 @@
     <section id="wrapper" class="step-register">
         <div class="register-box">
             <div class="">
-                <a href="javascript:void(0)" class="text-center m-b-40"><img src="../assets/images/logo-icon.png" alt="Home" /><br/><img src="../assets/images/logo-text.png" alt="Home" /></a>
+                <a href="javascript:void(0)" class="text-center m-b-40"><img src="../assets/images/logo-icon.png"
+                        alt="Home" /><br /><img src="../assets/images/logo-text.png" alt="Home" /></a>
                 <!-- multistep form -->
                 <form id="msform">
                     <!-- progressbar -->
@@ -63,7 +64,8 @@
                         <input id="txtmobile" type="text" name="phone" placeholder="Số điện thoại" />
                         <textarea id="txtaddress" name="address" placeholder="Địa chỉ "></textarea>
                         <input type="button" name="previous" class="previous action-button" value="Quay lại" />
-                        <input id="btnSubmit-Signup" type="submit" name="submit" class="submit action-button" value="Đăng ký" />
+                        <input id="btnSubmit-Signup" type="submit" name="submit" class="submit action-button"
+                            value="Đăng ký" />
                     </fieldset>
                 </form>
                 <div class="clear"></div>
@@ -83,19 +85,19 @@
     <script src="../assets/node_modules/register-steps/jquery.easing.min.js"></script>
     <script src="../assets/node_modules/register-steps/register-init.js"></script>
     <script type="text/javascript">
-    $(function() {
-        $(".preloader").fadeOut();
-    });
-    $(function() {
-        $('[data-bs-toggle="tooltip"]').tooltip()
-    });
-    // ============================================================== 
-    // Login and Recover Password 
-    // ============================================================== 
-    $('#to-recover').on("click", function() {
-        $("#loginform").slideUp();
-        $("#recoverform").fadeIn();
-    });
+        $(function () {
+            $(".preloader").fadeOut();
+        });
+        $(function () {
+            $('[data-bs-toggle="tooltip"]').tooltip()
+        });
+        // ============================================================== 
+        // Login and Recover Password 
+        // ============================================================== 
+        $('#to-recover').on("click", function () {
+            $("#loginform").slideUp();
+            $("#recoverform").fadeIn();
+        });
     </script>
     <script src="./adminitrator/index.js"></script>
     <!-- <script>

@@ -225,7 +225,7 @@ module.exports = function (app, objJson, isEmailValid) {
         console.log("bb", req.params.id);
         User.findByIdAndUpdate(req.params.id, req.body).then((dt) => {
             res.json({
-                result: 1, data: dt 
+                result: 1, data: dt
             })
         }).catch((e) => {
             res.json({
@@ -297,6 +297,30 @@ module.exports = function (app, objJson, isEmailValid) {
     })
     app.get("/deleleBaiViet/:id", (req, res) => {
         article.findByIdAndDelete(req.params.id).then((dt) => {
+            res.json({
+                result: 1, data: dt
+            })
+        }).catch((e) => {
+            res.json({
+                result: 0, err: e
+            })
+        });
+    })
+    app.get("/edit_baiviet_cua_tacgia/:id", (req, res) => {
+        console.log("aa", req.params.id);
+        article.findOne({ _id: req.params.id }).then((dt) => {
+            res.json({
+                result: 1, data: dt
+            })
+        }).catch((e) => {
+            res.json({
+                result: 0, err: e
+            })
+        });
+    });
+    app.post("/edit_BaiViet/:id", (req, res) => {
+        console.log("vv",req.params.id);
+        article.findByIdAndUpdate(req.params.id, req.body).then((dt) => {
             res.json({
                 result: 1, data: dt
             })

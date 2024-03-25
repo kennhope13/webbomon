@@ -360,13 +360,22 @@ $(document).ready(function () {
         k = k + 1;
         $("#listarticle").append(`
             <tr>
+            <td>
+            <a class="nav-link  waves-effect waves-dark edit_Baiviet"  id="`+ dt._id + `" data-bs-toggle="dropdown"><i  class="ti-marker-alt "></i> </a>
+            <a class="delete_BaiViet text-inverse"  id="` + dt._id + `" title="" data-bs-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a>
+            <div class=" animated bounceInDown" >
+              <div class=" row" >
+              <div id = "listedit" class="listedit">
+              </div>
+              </div>
+              </div>
+            
                 <td class="text-center">`+ k + `</td>
                 <td class="txt-oflo">`+ dt.article_name + `</td>
                 <td><span class="badge bg-success rounded-pill">sale</span> </td>
-                <td class="txt-oflo"><span><img style="width: 80px"  class="avatar" src="./`+ dt.images + `" alt=""></span></td>
-                <td><a
-                class="nav-link  waves-effect waves-dark edit_user"  id="`+ dt._id + `" data-bs-toggle="dropdown"><i  class="ti-marker-alt "></i> </a>
-                <a class="delete_BaiViet text-inverse"  id="` + dt._id + `" title="" data-bs-toggle="tooltip" data-original-title="Delete"><i class="ti-trash"></i></a></td> 
+                <td class="txt-oflo"><span><img style="width: 80px; "  class="avatar" src="./`+ dt.images + `" alt=""></span></td>
+                <td style="width:20px "> `+ dt.describe + `</td>
+                
             </tr>
           `)
       }
@@ -385,6 +394,119 @@ $(document).ready(function () {
           url: '/deleleBaiViet/' + id,
           success: function (response) {
             window.location = "./TacGia";
+          },
+          error: function (err) {
+            console.log(err);
+          }
+        });
+      }
+    });
+    $('.edit_Baiviet').on('click', function (id) {
+      var id = $(this).attr('id');
+      if (id) {
+        $.ajax({
+          type: 'GET',
+          method: 'GET',
+          url: '/edit_baiviet_cua_tacgia/' + id,
+          success: function (response) {
+            console.log("bai viet", response);
+            $('#listedit').html('');
+            $('#listedit').append(`
+                    <div class = "edit">
+                      <div class="col-lg-12 m-b-30 text-center ">
+                          
+                          <!-- Accordian -->
+                          <div class="accordion" id="accordionExample">
+                              <div class="card m-b-0">
+                              
+                              <button  type="button" style="position:absolute;  margin-top:10px" id="hiden" >X</button>
+                              
+                              <h4 class="m-b-20 mt-5" >CHỈNH SỬA BÀI VIẾT</h4>
+                                  <div class="form-group">
+                                      <input  type="text" value= "`+ response.data.article_name + `" class="form-control" id="txt_editBaiviet"
+                                          placeholder="Enter Name">
+                                  </div>
+                                  
+                                  
+                                  <div class="form-group">
+                                      <input    type="file" class="form-control"
+                                          id="txt_FileImage">
+                                      <img id="imgProduct" style="width: 60px;" class="avatar" src="./upload/default.jpg"
+                                          alt="">
+                                      <input  type="hidden" id="hid_avt" value="./upload/`+ response.data.images + `">
+                                      <input   type="button" id="btn_Edit_UploadImage"
+                                          value="Done!!">
+                                  </div>
+                                  <div class="form-group">
+                                      <input  type="textarea" class="form-control"
+                                           id="txt_EditNoidung" value="`+ response.data.describe + `">
+                                           
+                                  </div>
+                                 <div>
+                                 <button  type="button" class="btn btn-info  text-white btn_editbaiviet mb-3"  >UPDATE</button>
+                                 </div>
+                              </div>
+                             
+                          </div>
+                      </div>
+                      </div>
+            `)
+            $("#hiden").click(function () {
+              $("#listedit").hide();
+            })
+            $(".edit_Baiviet").click(function () {
+              $("#listedit").show();
+            })
+            $("#btn_Edit_UploadImage").click(function () {
+              var data = new FormData();
+              jQuery.each(jQuery('#txt_FileImage')[0].files, function (i, file) {
+                data.append('avatar', file);
+              });
+
+              jQuery.ajax({
+                url: './uploadfile',
+                data: data,
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST', // For jQuery < 1.9
+                success: function (data) {
+                  if (data.result == 1) {
+                    console.log("user: ", data);
+                    $("#imgProduct").attr("src", "upload/" + data.info.filename);
+                    $("#hid_avt").attr("value", "upload/" + data.info.filename);
+                  } else {
+                    alert(data.message);
+                  }
+                }
+              });
+            });
+            $('.btn_editbaiviet').on('click', function () {
+              var Name = $("#txt_editBaiviet").val();
+              var img = $("#hid_avt").val();
+              var describe = $("#txt_EditNoidung").val();
+
+
+              var data = { article_name: Name, images: img, describe: describe };
+              console.log("poooooooo:", data);
+              $.ajax({
+                url: './edit_BaiViet/' + id,
+                data: data,
+                cache: false,
+                method: 'POST',
+                type: 'POST',
+                success: function (data) {
+                  if (data.result == 1) {
+
+                    window.location = "./TacGia";
+                  } else {
+                    //alert(data.message);
+                    console.log("err", data);
+                  }
+                }
+              })
+            })
           },
           error: function (err) {
             console.log(err);
